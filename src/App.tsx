@@ -11,7 +11,7 @@ import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
 
-function App() {
+const App: React.FC = () => {
   const [categories, setCategories] = useState([]);
 
   return (

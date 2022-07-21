@@ -21,7 +21,7 @@ import clocksIcon from "../../assets/icons/clocks-icon.svg";
 import bagIcon from "../../assets/icons/icon-bag-empty.svg";
 import fullBagIcon from "../../assets/icons/icon-bag-full.svg";
 import searchIcon from "../../assets/icons/icon-search.svg";
-import logoImage from "../../assets/icons/icon-menu.svg";
+import logoImage from "../../assets/red-g-logo.jpg";
 
 const StyledNav = styled.header`
 
@@ -40,33 +40,54 @@ const ContentContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  max-width: 80rem;
+  align-items: center;
+  //width: 100%;
   margin: 0 auto;
   padding: ${paddings.sm};
+
+  ${devices.laptop} {
+    max-width: 80rem;
+  }
 `;
 
 const HalfNavMenu = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
+  display: none;
+
+  ${devices.laptop} {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
 `;
 
 const BurgerBtn = styled.button`
+  display: block;
   width: 1.5rem;
   height: 1.5rem;
-  float: left;
-  background: url(${menuIcon}) center no-repeat;
+  background: url(${menuIcon}) center/contain no-repeat;
   
-  ${devices.mobile} {
+  ${devices.laptop} {
     display: none;
   }
 `;
 
 const NavActionWrapper = styled.div`
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+  display: none;
+
+  ${devices.laptop} {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const Logo = styled(Link)<{ icon: string }>`
+  display: block;
+  width: 9rem;
+  height: 2rem;
+  background: url(${(props) => props && props.icon}) center/contain no-repeat;
+  text-decoration: none;
 `;
 
 const StyledLink = styled(Link) <{ icon: string }>`
@@ -80,9 +101,13 @@ const StyledLink = styled(Link) <{ icon: string }>`
 `;
 
 const LinkText = styled.div`
-  display: inline-block;
+  display: none;
   width: 5rem;
   margin-left: ${margins.lg};
+
+  ${devices.tablet} {
+    display: inline-block;
+  }
 
   &:hover {
     color: ${colors.red};
@@ -91,6 +116,7 @@ const LinkText = styled.div`
 
 const CartLink = styled(StyledLink)`
   position: relative;
+  //margin-right: ${margins.lg};
 
   span {
     display: block;
@@ -106,10 +132,15 @@ const CartLink = styled(StyledLink)`
 `;
 
 const SearchFieldWrapper = styled.div`
+  display: none;
   position: relative;
   min-width: 1.5rem;
   height: 100%;
   margin-left: ${margins.sm};
+
+  ${devices.tablet} {
+    display: block;
+  }
 
   &::before {
     content: "";
@@ -125,31 +156,40 @@ const SearchFieldWrapper = styled.div`
 `;
 
 const SearchField = styled.input`
-  display: none;
   position: relative;
   height: 2rem;
   padding: 0 ${paddings.xs};
-  border: 1px solid ${colors.darkBlue};
+  border-color: ${colors.lightGray};
   border-radius: 4px;
   box-sizing: border-box;
 
-  ${devices.mobile} {
-    display: inline-block;
+
+`;
+
+const MobileSearch = styled(SearchFieldWrapper)`
+  display: block;
+
+  ${devices.tablet} {
+    display: none;
   }
 `;
 
-const CategoryMenu = styled.div`
-  display: none;
+const MobileBar = styled.div`
+  display: flex;
   width: 100%;
-  height: 2rem;
+  height: 4rem;
   position: absolute;
   top: 4rem;
+  right: 0;
+  left: 0;
   justify-content: center;
-  background: ${colors.lightBlue};
+  padding: ${paddings.sm};
   box-shadow: -3px 3px 5px -5px ${colors.shadow};
+  box-sizing: border-box;
+  background: ${colors.contentBg};
 
   ${devices.tablet} {
-    display: flex;
+    display: none;
   }
 `;
 
@@ -158,7 +198,6 @@ const CategoryLink = styled(Link)`
   height: 100%;
   border-right: 1px solid ${colors.bg};
   text-decoration: none;
-  color: ${colors.darkBlue};
   font-size: ${fontSizes.xs};
   text-align: center;
   line-height: 2rem;
@@ -182,23 +221,24 @@ const Nav: React.FC = () => {
     <>
       <StyledNav>
         <ContentContainer>
-        <HalfNavMenu>
           <BurgerBtn />
-          <StyledLink to="/" icon={logoImage} />
+          <Logo to="/" icon={logoImage} />
           <SearchFieldWrapper>
             <SearchField type="text" placeholder="Meklēt" />
           </SearchFieldWrapper>
-        </HalfNavMenu>
-        <HalfNavMenu>
           <NavActionWrapper>
             <StyledLink to="/auth" onClick={(): void => { }} icon={userIcon}><LinkText>Ieiet vai reģistrēties</LinkText></StyledLink>
             <StyledLink to="/wishlist" icon={heartIcon}><LinkText>Vēlmju saraksts</LinkText></StyledLink>
             <StyledLink to="/workingHours" icon={clocksIcon}><LinkText>Darba laiks</LinkText></StyledLink>
           </NavActionWrapper>
           <CartLink to="/cart" icon={bagIcon}><LinkText>Iepirkumu grozs</LinkText></CartLink>
-        </HalfNavMenu>
         </ContentContainer>
       </StyledNav>
+      <MobileBar>
+        <MobileSearch>
+          <SearchField type="text" placeholder="Meklēt" />
+        </MobileSearch>
+      </MobileBar>
     </>
   );
 };

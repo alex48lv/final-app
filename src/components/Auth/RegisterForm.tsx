@@ -3,8 +3,10 @@ import { object, ref, string } from "yup";
 import FormBtn from "../Form/FormButton";
 import FormError from "../Form/FormError";
 import FormInput from "../Form/FormInput";
+import FormLabel from "../Form/FormLabel";
 import FormTextLink from "../Form/FormTextLink";
 import FormTitle from "../Form/FormTitle";
+import InputContainer from "../Form/InputContainer";
 
 const validationSchema = object({
   name: string().required(),
@@ -33,16 +35,26 @@ const RegisterForm: React.FC<{
     >
       <Form>
         <FormTitle>Registration</FormTitle>
-        <FormInput type="text" name="name" />
-        <FormError name="name" />
-        <FormInput type="text" name="surname" />
-        <FormError name="surname" />
-        <FormInput type="text" name="email" />
-        <FormError name="email" />
-        <FormInput type="password" name="password" />
-        <FormError name="password" />
-        <FormInput type="password" name="repeatPassword" />
-        <FormError name="repeatPassword" />
+        <InputContainer>
+          <FormLabel htmlFor="name">Name*</FormLabel>
+          <FormInput type="text" name="name" id="name" />
+          <FormError name="name" />
+        </InputContainer>
+        <InputContainer>
+          <FormLabel htmlFor="email">E-mail*</FormLabel>
+          <FormInput type="text" name="email" id="email" />
+          <FormError name="email" />
+        </InputContainer>
+        <InputContainer>
+          <FormLabel htmlFor="password">Password*</FormLabel>
+          <FormInput type="password" name="password" id="password" />
+          <FormError name="password" />
+        </InputContainer>
+        <InputContainer>
+          <FormLabel htmlFor="repeatPassword">Repeat password*</FormLabel>
+          <FormInput type="password" name="repeatPassword" id="repeatPassword" />
+          <FormError name="repeatPassword" />
+        </InputContainer>
         <FormBtn type="submit">Sign up</FormBtn>
         <FormTextLink onClick={() => formChangeHandler("login")}>
           Already have an account? Log in!

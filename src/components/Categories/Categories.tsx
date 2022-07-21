@@ -2,14 +2,20 @@ import { useContext } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import DataContext from "../context/DataContext";
-import { colors, paddings } from "../../theme/theme";
+import { colors, devices, paddings } from "../../theme/theme";
 import CategoryItem from "./CategoryItem";
 
 const CategoryWrapper = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
+  float: left;
   width: 21rem;
   background: ${colors.contentBg};
+  box-sizing: border-box;
+
+  ${devices.laptop} {
+    display: flex;
+  }
 `;
 
 const Categories: React.FC = () => {

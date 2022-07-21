@@ -1,13 +1,18 @@
 import { Field } from "formik";
 import styled from "styled-components";
-import { colors, margins } from "../../theme/theme";
+import { colors, devices, fontSizes, margins } from "../../theme/theme";
 
 const FormInput = styled(Field)`
-  width: 100%;
-  height: 2rem;
-  border: 1px solid ${colors.lightBlue};
+  width: 18rem;
+  height: 3rem;
+  font-size: ${fontSizes.md};
+  margin-bottom: ${margins.xs};
+  border: 1px solid ${colors.lightGray};
   box-sizing: border-box;
-  margin-bottom: ${margins.sm};
+
+  ${devices.tablet} {
+    width: 20rem;
+  }
 `;
 
 export default FormInput;

@@ -6,7 +6,6 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: ${colors.darkBlue};
   font-weight: 700;
   min-height: calc(100vh - 10rem);
 

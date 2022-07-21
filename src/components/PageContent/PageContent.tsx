@@ -3,7 +3,7 @@ import { devices, paddings } from "../../theme/theme";
 
 const PageContentContainer = styled.div`
   width: 100%;
-  margin: 4rem 0 0;
+  margin: 10rem 0 0;
   padding: 0 ${paddings.sm};
   min-height: calc(100vh - 10rem);
   box-sizing: border-box;

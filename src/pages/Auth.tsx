@@ -3,21 +3,23 @@ import styled from "styled-components";
 import ForgotPwdForm from "../components/Auth/ForgotPwdForm";
 import LoginForm from "../components/Auth/LoginForm";
 import RegisterForm from "../components/Auth/RegisterForm";
-import { colors, devices } from "../theme/theme";
+import { colors, devices, paddings } from "../theme/theme";
 
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: ${colors.darkBlue};
   min-height: calc(100vh - 10rem);
-  max-width: 20rem;
-  margin: auto;
+  width: 100%;
+  padding: ${paddings.lg};
   text-align: center;
+  background: ${colors.contentBg};
 
   ${devices.tablet} {
+    width: 22rem;
     min-height: calc(100vh - 12rem);
+    margin: auto;
   }
 `;
 

@@ -1,9 +1,10 @@
 import styled from "styled-components";
-
+import rightIcon from "../../assets/icons/icon-arrow-r.svg"
 import { Link } from "react-router-dom";
 import { colors, paddings } from "../../theme/theme";
 
 const Item = styled(Link)`
+  position: relative;
   width: 100%;
   height: 2.5rem;
   padding: 0 ${paddings.sm};
@@ -20,8 +21,22 @@ const Item = styled(Link)`
   }
 `;
 
+const Arrow = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 10px;
+  width: .6rem;
+  height: .6rem;
+  background: url(${rightIcon}) center/contain no-repeat;
+`;
+
 const CategoryItem: React.FC<{ category: string }> = ({ category }) => {
-  return <Item to={`/category/${category}`}>{category}</Item>;
+  return (
+    <Item to={`/category/${category}`}>
+      {category}
+      <Arrow />
+    </Item>
+  );
 };
 
 export default CategoryItem;
