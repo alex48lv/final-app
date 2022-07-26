@@ -91,23 +91,23 @@ const bgImages = [
 ];*/
 
 const CategoryCards: React.FC = () => {
-    const { categories, setCategories } = useContext(DataContext);
+  const { categories, setCategories } = useContext(DataContext);
 
-    const { isLoading } = useQuery("categoryData", () =>
-      fetch("https://dummyjson.com/products/categories")
-        .then((res) => res.json())
-        .then((stateData) => setCategories(stateData))
-    );
-  
-    if (isLoading) return <div>loading...</div>;
-  
-    return (
-      <>
-        {categories.slice(0, 12).map((category: string, index: number) => {
-          return <CategoryCard key={index} category={category} />;
-        })}
-      </>
-    );
+  const { isLoading } = useQuery("categoryData", () =>
+    fetch("https://dummyjson.com/products/categories")
+      .then((res) => res.json())
+      .then((stateData) => setCategories(stateData))
+  );
+
+  if (isLoading) return <div>loading...</div>;
+
+  return (
+    <>
+      {categories.slice(0, 12).map((category: string, index: number) => {
+        return <CategoryCard key={index} category={category} id={index} />;
+      })}
+    </>
+  );
 };
 
 export default CategoryCards;
