@@ -2,7 +2,7 @@ export const colors = {
   bg: "#f2f2f2",
   contentBg: "#ffffff",
   gray: "#6c6a6a",
-  lightGray: "#a8aaac",
+  lightGray: "#cdcfd0",
   error: "#f9d1d4",
   red: "#e11b27",
   shadow: "#1c1c1c",

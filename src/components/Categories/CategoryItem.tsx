@@ -12,6 +12,7 @@ const Item = styled(Link)`
   line-height: 2.5rem;
   text-align: center;
   text-decoration: none;
+  text-transform: capitalize;
   box-sizing: border-box;
 
   &:hover {

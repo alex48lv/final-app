@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import DataContext from "../context/DataContext";
-import { colors, devices, paddings } from "../../theme/theme";
+import { colors, devices, margins } from "../../theme/theme";
 import CategoryItem from "./CategoryItem";
 
 const CategoryWrapper = styled.div`
@@ -10,6 +10,7 @@ const CategoryWrapper = styled.div`
   flex-direction: column;
   float: left;
   width: 21rem;
+  margin-right: ${margins.md};
   background: ${colors.contentBg};
   box-sizing: border-box;
 

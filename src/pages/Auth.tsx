@@ -12,7 +12,6 @@ const FormWrapper = styled.div`
   align-items: center;
   min-height: calc(100vh - 10rem);
   width: 100%;
-  padding: ${paddings.lg};
   text-align: center;
   background: ${colors.contentBg};
 
@@ -20,6 +19,7 @@ const FormWrapper = styled.div`
     width: 22rem;
     min-height: calc(100vh - 12rem);
     margin: auto;
+    padding: ${paddings.lg};
   }
 `;
 

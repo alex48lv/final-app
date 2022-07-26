@@ -11,4 +11,4 @@ const CartContext = createContext<CartContextInterface>({
     setCartValue: () => []
 })
 
-export default CartContext
+export default CartContext;

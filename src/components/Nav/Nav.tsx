@@ -22,6 +22,10 @@ import bagIcon from "../../assets/icons/icon-bag-empty.svg";
 import fullBagIcon from "../../assets/icons/icon-bag-full.svg";
 import searchIcon from "../../assets/icons/icon-search.svg";
 import logoImage from "../../assets/red-g-logo.jpg";
+import { useContext } from "react";
+import SideBarContext from "../context/SideBarContext";
+import CartContext from "../context/CartContext";
+import WishlistContext from "../context/WishlistContext";
 
 const StyledNav = styled.header`
 
@@ -91,6 +95,7 @@ const Logo = styled(Link)<{ icon: string }>`
 `;
 
 const StyledLink = styled(Link) <{ icon: string }>`
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-width: 1.5rem;
@@ -116,19 +121,20 @@ const LinkText = styled.div`
 
 const CartLink = styled(StyledLink)`
   position: relative;
-  //margin-right: ${margins.lg};
+`;
 
-  span {
-    display: block;
-    width: 1rem;
-    height: 1rem;
-    position: absolute;
-    top: 0.8rem;
-    right: 0.5rem;
-    text-align: center;
-    position: absolute;
-    color: ${colors.bg};
-  }
+const ItemCount = styled.span`
+  position: absolute;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  top: 0.7rem;
+  left: 0.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: ${colors.contentBg};
+  background: ${colors.red};
+  border-radius: 50%;
 `;
 
 const SearchFieldWrapper = styled.div`
@@ -213,25 +219,31 @@ const CategoryLink = styled(Link)`
 `;
 
 const Nav: React.FC = () => {
-  //const { isSideBarOpen, setIsSideBarOpen } = useContext(SideBarContext);
-  //const { cartValue } = useContext(CartContext);
-  //const { categories } = useContext(DataContext);
+  const { isSideBarOpen, setIsSideBarOpen } = useContext(SideBarContext);
+  const { cartValue } = useContext(CartContext);
+  const { wishlistValue } = useContext(WishlistContext);
 
   return (
     <>
       <StyledNav>
         <ContentContainer>
-          <BurgerBtn />
+          <BurgerBtn onClick={(): void => setIsSideBarOpen(!isSideBarOpen)} />
           <Logo to="/" icon={logoImage} />
           <SearchFieldWrapper>
             <SearchField type="text" placeholder="Meklēt" />
           </SearchFieldWrapper>
           <NavActionWrapper>
             <StyledLink to="/auth" onClick={(): void => { }} icon={userIcon}><LinkText>Ieiet vai reģistrēties</LinkText></StyledLink>
-            <StyledLink to="/wishlist" icon={heartIcon}><LinkText>Vēlmju saraksts</LinkText></StyledLink>
-            <StyledLink to="/workingHours" icon={clocksIcon}><LinkText>Darba laiks</LinkText></StyledLink>
+            <StyledLink to="/wishlist" icon={heartIcon}>
+              {wishlistValue.length > 0 && <ItemCount>{wishlistValue.length}</ItemCount>}
+              <LinkText>Vēlmju saraksts</LinkText>
+            </StyledLink>
+            <StyledLink to="/working-hours" icon={clocksIcon}><LinkText>Darba laiks</LinkText></StyledLink>
           </NavActionWrapper>
-          <CartLink to="/cart" icon={bagIcon}><LinkText>Iepirkumu grozs</LinkText></CartLink>
+          <CartLink to="/cart" icon={cartValue.length > 0 ? fullBagIcon : bagIcon}>
+            {cartValue.length > 0 && <ItemCount>{cartValue.length}</ItemCount>}
+            <LinkText>Iepirkumu grozs</LinkText>
+          </CartLink>
         </ContentContainer>
       </StyledNav>
       <MobileBar>

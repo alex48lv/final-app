@@ -2,8 +2,11 @@ import styled from "styled-components";
 import { devices, paddings } from "../../theme/theme";
 
 const PageContentContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: start;
   width: 100%;
-  margin: 10rem 0 0;
+  margin: 9rem 0 0;
   padding: 0 ${paddings.sm};
   min-height: calc(100vh - 10rem);
   box-sizing: border-box;
@@ -13,7 +16,7 @@ const PageContentContainer = styled.div`
     min-height: calc(100vh - 12rem);
     max-width: 80rem;
     padding: 0 ${paddings.lg};
-    margin: 6rem auto 0;
+    margin: 5.5rem auto 0;
   }
 `;
 

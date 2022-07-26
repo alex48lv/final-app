@@ -8,6 +8,7 @@ const ContentWrapper = styled.div`
   align-items: center;
   font-weight: 700;
   min-height: calc(100vh - 10rem);
+  margin: 0 auto;
 
   ${devices.tablet} {
     min-height: calc(100vh - 12rem);
